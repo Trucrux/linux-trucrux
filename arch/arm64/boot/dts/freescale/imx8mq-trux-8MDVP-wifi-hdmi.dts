@@ -1,0 +1,13 @@
+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+/*
+ * Copyright 2017 NXP
+ * Copyright 2022 Trucrux
+ */
+
+#include "imx8mq-trux-8MDVP.dtsi"
+#include "imx8mq-trux-wifi.dtsi"
+#include "imx8mq-trux-8MDVP-hdmi.dtsi"
+
+/ {
+	model = "Trucrux iMX8MQ on WIFI+HDMI";
+};
