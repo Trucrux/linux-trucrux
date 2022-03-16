@@ -1520,7 +1520,7 @@
 	};
 
 	gpu3d: gpu3d@38000000 {
-		compatible = "fsl,imx8mq-gpu"; /* fsl,imx6q-gpu */
+		compatible = "fsl,imx8mq-gpu", "fsl,imx6q-gpu" ;
 		reg = <0x0 0x38000000 0x0 0x40000>, <0x0 0x40000000 0x0 0xC0000000>, <0x0 0x0 0x0 0x10000000>;
 		reg-names = "iobase_3d", "phys_baseaddr", "contiguous_mem";
 		interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>;
