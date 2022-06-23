@@ -599,9 +599,9 @@
 				/* coded default: KNEE_IP = -30, KNEE_OP = -10.5, HI_COMP = 1/4, LO_COMP = 1 */
 				<0x04af 0x324b 0x0010 0x050e>;
 		gpio-cfg = <
-			0x0018 /* GPIO1 => DMIC_CLK */
+			0xffff /* GPIO1 => dont't touch */
 			0xffff /* GPIO2 => don't touch */
-			0xffff /* GPIO3 => don't touch */
+			0x0018 /* GPIO3 => DMIC_CLK */
 			0xffff /* GPIO4 => don't touch */
 		>;
 		status = "okay";
