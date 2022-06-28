@@ -114,94 +114,10 @@
 
 		ethphy0: ethernet-phy@0 {
 			compatible = "ethernet-phy-ieee802.3-c22";
-			reg = <0>;
-			at803x,led-act-blind-workaround;
-			at803x,eee-disabled;
+			reg = <0x00>;
 		};
 	};
 };
-
-/*
-//for MARVEL changes comment above node and add this node
-&fec1{
-	phy-mode = "rgmii";
-	phy-handle = <&switch0port0>;
-	pinctrl-names = "default";
-	pinctrl-0 = <&pinctrl_fec1>;
-	status = "okay";
-
-	fixed-link {
-		speed = <1000>;
-		full-duplex;
-	};
-
-	mdio {
-		#address-cells = <1>;
-		#size-cells = <0>;
-		status = "okay";
-
-
-		switch0: switch0@0 {
-			compatible = "marvell,mv88e6190";
-			reg = <0>;
-			reset-gpios = <&gpio4 26 GPIO_ACTIVE_LOW>;
-			ports {
-				#address-cells = <1>;
-				#size-cells = <0>;
-
-			switch0port0:port@0 {
-					reg = <0>;
-					label = "cpu";
-					ethernet = <&fec1>;
-
-					fixed-link {
-						speed = <1000>;
-						full-duplex;
-					};
-				};
-
-				port@1 {
-					reg = <1>;
-					label = "port1";
-
-				};
-
-				port@2 {
-					reg = <2>;
-					label = "port2";
-				};
-
-				port@3 {
-					reg = <3>;
-					label = "port3";
-				};
-
-				port@4 {
-					reg = <4>;
-					label = "port4";
-				};
-
-				port@5 {
-					reg = <5>;
-					label = "port5";
-				};
-
-				port@6 {
-					reg = <6>;
-					label = "port6";
-				};
-				port@7 {
-										reg = <7>;
-										label = "port7";
-								};
-
-			};
-		};
-	};
-
-
-};
-*/
 
 &gpu3d {
 	status = "okay";
@@ -239,8 +155,7 @@
 			MX8MQ_IOMUXC_ENET_RXC_ENET1_RGMII_RXC		0x91
 			MX8MQ_IOMUXC_ENET_RX_CTL_ENET1_RGMII_RX_CTL	0x91
 			MX8MQ_IOMUXC_ENET_TX_CTL_ENET1_RGMII_TX_CTL	0x1f
-			/*MX8MQ_IOMUXC_GPIO1_IO09_GPIO1_IO9		0x19*/
-			MX8MQ_IOMUXC_SAI2_TXD0_GPIO4_IO26               0x19
+			MX8MQ_IOMUXC_GPIO1_IO09_GPIO1_IO9		0x19
 		>;
 	};
 
