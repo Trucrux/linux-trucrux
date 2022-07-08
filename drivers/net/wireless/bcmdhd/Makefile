@@ -28,7 +28,7 @@ CONFIG_MM := n
 
 #For SDIO interface
 #CONFIG_SparkLAN_SDTXGLOM_MDSEC := n
-CONFIG_SparkLAN_FW_DELAY := y
+CONFIG_SparkLAN_FW_DELAY := n
 CONFIG_SparkLAN_BUS_DELAY := n
 CONFIG_SparkLAN_IRQ_MSI := y
 
