@@ -160,7 +160,7 @@
 
 	/* CAN controller */
 	can0: can@1 {
-		compatible = "microchip,mcp251xfd";
+		compatible = "microchip,mcp2518fd";
 		reg = <1>;
 		pinctrl-names = "default";
 		pinctrl-0 = <&pinctrl_can>;
@@ -171,6 +171,14 @@
 		spi-max-frequency = <20000000>;
 		status = "okay";
 	};
+
+	    /* Test SPI device */
+       spidev@2 {
+               reg = <2>;
+               compatible = "trux,spidev";
+               spi-max-frequency = <12000000>;
+               status = "okay";
+       };
 
 };
 
