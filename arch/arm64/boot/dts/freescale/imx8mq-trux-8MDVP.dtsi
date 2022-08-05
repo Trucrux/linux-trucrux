@@ -33,30 +33,9 @@
 	gpio-keys {
 		compatible = "gpio-keys";
 
-		up {
-			label = "Up";
-			gpios = <&pca6408_1 5 GPIO_ACTIVE_LOW>;
-			linux,code = <KEY_UP>;
-			wakeup-source;
-		};
-
-		down {
-			label = "Down";
-			gpios = <&pca6408_1 6 GPIO_ACTIVE_LOW>;
-			linux,code = <KEY_DOWN>;
-			wakeup-source;
-		};
-
-		home {
-			label = "Home";
-			gpios = <&pca6408_1 4 GPIO_ACTIVE_LOW>;
-			linux,code = <KEY_HOME>;
-			wakeup-source;
-		};
-
-		back {
-			label = "Back";
-			gpios = <&pca6408_1 7 GPIO_ACTIVE_LOW>;
+		wake-up {
+			label = "Wake-UP";
+			gpios = <&gpio1 5 GPIO_ACTIVE_LOW>;
 			linux,code = <KEY_BACK>;
 			wakeup-source;
 		};
