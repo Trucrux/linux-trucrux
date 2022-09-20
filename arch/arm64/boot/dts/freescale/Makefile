@@ -81,7 +81,9 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mq-evk-dp.dtb
 dtb-$(CONFIG_ARCH_MXC) += imx8mq-zii-ultra-rmb3.dtb
 dtb-$(CONFIG_ARCH_MXC) += imx8mq-zii-ultra-zest.dtb
 dtb-$(CONFIG_ARCH_MXC) += imx8mq-trux-8MDVP-sd-hdmi.dtb \
-			  imx8mq-trux-8MDVP-wifi-hdmi.dtb
+			  imx8mq-trux-8MDVP-wifi-hdmi.dtb \
+			  imx8mq-trux-8MDVP-sd-mipi.dtb \
+			  imx8mq-trux-8MDVP-wifi-mipi.dtb
 dtb-$(CONFIG_ARCH_MXC) += imx8mq-ddr3l-val.dtb imx8mq-ddr4-val.dtb imx8mq-ddr4-val-gpmi-nand.dtb
 dtb-$(CONFIG_ARCH_MXC) += imx8qm-mek.dtb imx8qm-mek-ov5640.dtb \
 			  imx8qm-mek-enet2-tja1100.dtb imx8qm-mek-rpmsg.dtb \
