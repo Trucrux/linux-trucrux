@@ -1,0 +1,12 @@
+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+/*
+ * Copyright 2022 Trucrux
+ */
+
+#include "imx8mq-trux-8MDVP.dtsi"
+#include "imx8mq-trux-8MDVP-sd.dtsi"
+#include "imx8mq-trux-8MDVP-dcss-mipi.dtsi"
+
+/ {
+        model = "Trucrux iMX8MQ on SD+MIPI";
+};
