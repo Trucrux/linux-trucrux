@@ -89,21 +89,21 @@
         status = "okay";
 };
 
+&i2c3 {
+        address-cells = <1>;
+        #size-cells = <0>;
+        status = "okay";
 
-&i2c2 {
-	address-cells = <1>;
-	#size-cells = <0>;
-	status = "okay";
-
-	polytouch: edt-gt9xx@14 {
-		compatible = "goodix,gt911";
-		reg = <0x14>;
-		pinctrl-names = "default";
-		pinctrl-0 = <&pinctrl_touch_irq &pinctrl_touch_rst>;
-		interrupt-parent = <&gpio1>;
-		interrupts = <14 IRQ_TYPE_EDGE_FALLING>;
-		reset-gpios = <&gpio4 5 GPIO_ACTIVE_LOW>;
-		touchscreen-size-x = <800>;
-		touchscreen-size-y = <1280>;
-	};
+        gt911: touchscreen@14 {
+                compatible = "goodix,gt911";
+                reg = <0x14>;
+                reset-gpios = <&gpio4 5 GPIO_ACTIVE_HIGH>;
+                interrupt-parent = <&gpio1>;
+                interrupts = <14 IRQ_TYPE_LEVEL_HIGH>;
+                irq-gpios = <&gpio1 14 GPIO_ACTIVE_HIGH>;
+                touchscreen-size-x = <800>;
+                touchscreen-size-y = <1280>;
+                status = "okay";
+                wakeup-source;
+        };
 };
