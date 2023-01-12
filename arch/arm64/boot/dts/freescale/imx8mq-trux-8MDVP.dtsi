@@ -317,6 +317,18 @@
 			MX8MQ_IOMUXC_GPIO1_IO05_GPIO1_IO5		0xc6
 		>;
 	};
+
+	pinctrl_pcie0: pcie0grp {
+		fsl,pins = <
+			MX8MQ_IOMUXC_SAI1_RXD5_GPIO4_IO7		0x16
+		>;
+	};
+
+	pinctrl_pcie1: pcie1grp {
+		fsl,pins = <
+			MX8MQ_IOMUXC_SAI1_TXD7_GPIO4_IO19		0x16
+		>;
+	};
 };
 
 &i2c2 {
@@ -485,25 +497,31 @@
 };
 
 &pcie0 {
-	reset-gpio = <&pca6408_2 3 GPIO_ACTIVE_LOW>;
+	/* 4G/5G M2.0 Module */
 	clocks = <&clk IMX8MQ_CLK_PCIE1_ROOT>,
 		 <&clk IMX8MQ_CLK_PCIE1_AUX>,
 		 <&clk IMX8MQ_CLK_PCIE1_PHY>,
 		 <&pcie0_refclk>;
 	clock-names = "pcie", "pcie_aux", "pcie_phy", "pcie_bus";
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_pcie0>;
+	reset-gpio = <&gpio4 7 GPIO_ACTIVE_LOW>;
 	vph-supply = <&ldo7_reg>;
 	status = "okay";
 };
 
 &pcie1 {
-	reset-gpio = <&pca6408_2 2 GPIO_ACTIVE_LOW>;
+	/* SSD M2.0 Module */
 	clocks = <&clk IMX8MQ_CLK_PCIE2_ROOT>,
 		 <&clk IMX8MQ_CLK_PCIE2_AUX>,
 		 <&clk IMX8MQ_CLK_PCIE2_PHY>,
 		 <&pcie1_refclk>;
 	clock-names = "pcie", "pcie_aux", "pcie_phy", "pcie_bus";
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_pcie1>;
+	reset-gpio = <&gpio4 19 GPIO_ACTIVE_LOW>;
 	vph-supply = <&ldo7_reg>;
-	status = "disabled";
+	status = "okay";
 };
 
 &pwm1 {
