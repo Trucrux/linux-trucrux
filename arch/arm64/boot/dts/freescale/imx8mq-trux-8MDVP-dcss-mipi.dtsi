@@ -9,10 +9,14 @@
 	};
 
 &lcdif {
-	status = "disable";
+	status = "disabled";
 	};
 
 &irqsteer{
+	status = "okay";
+	};
+
+&pwm1 {
 	status = "okay";
 	};
 
