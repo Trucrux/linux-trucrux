@@ -41,18 +41,6 @@
 		};
 	};
 
-	leds {
-		compatible = "gpio-leds";
-		pinctrl-names = "default";
-		pinctrl-0 = <&pinctrl_leds>;
-
-		emmc {
-			label = "eMMC";
-			gpios = <&gpio4 18 GPIO_ACTIVE_HIGH>;
-			linux,default-trigger = "mmc0";
-		};
-	};
-
 	pcie0_refclk: pcie0-refclk {
 		compatible = "fixed-clock";
 		#clock-cells = <0>;
