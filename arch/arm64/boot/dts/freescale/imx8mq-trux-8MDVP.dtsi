@@ -327,11 +327,11 @@
 		wakeup-source;
 	};
 
-	/* DS1337 RTC module */
-	rtc@68 {
+	/* RV3025 RTC module */
+	rtc_rv3028: rv3028@52 {
+		reg = <0x52>;
+		compatible = "microcrystal,rv3028";
 		status = "okay";
-		compatible = "dallas,ds1337";
-		reg = <0x68>;
 		pinctrl-names = "default";
 		pinctrl-0 = <&pinctrl_rtc>;
 		interrupt-parent = <&gpio1>;
