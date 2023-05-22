@@ -16,5 +16,6 @@ config CAN_MCP251X
 	  controllers.
 
 source "drivers/net/can/spi/mcp25xxfd/Kconfig"
+source "drivers/net/can/spi/mcp251xfd/Kconfig"
 
 endmenu
