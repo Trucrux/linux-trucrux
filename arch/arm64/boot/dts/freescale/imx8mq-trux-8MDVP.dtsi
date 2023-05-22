@@ -126,7 +126,7 @@
 
 	/* CAN controller */
 	can0: can@0 {
-		compatible = "microchip,mcp2517fd";
+		compatible = "microchip,mcp2518fd";
 		reg = <0>;
 		pinctrl-names = "default";
 		pinctrl-0 = <&pinctrl_can>;
