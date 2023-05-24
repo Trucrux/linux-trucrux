@@ -138,8 +138,8 @@
 	};
 
 	    /* Test SPI device */
-       spidev@2 {
-               reg = <2>;
+       spidev@1 {
+               reg = <1>;
                compatible = "trux,spidev";
                spi-max-frequency = <12000000>;
                status = "okay";
