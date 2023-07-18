@@ -218,15 +218,16 @@
 		};
 	};
 
-	/* DS1337 RTC module */
-	rtc@68 {
+	/* RV3028 RTC module */
+	rtc_rv3028: rtc@52 {
+		reg = <0x52>;
+		compatible = "microcrystal,rv3028";
 		status = "okay";
-		compatible = "dallas,ds1337";
-		reg = <0x68>;
 		pinctrl-names = "default";
 		pinctrl-0 = <&pinctrl_rtc>;
 		interrupt-parent = <&gpio1>;
 		interrupts = <15 IRQ_TYPE_EDGE_FALLING>;
+		wakeup-source;
 	};
 };
 
@@ -510,4 +511,10 @@
 			MX8MM_IOMUXC_GPIO1_IO05_GPIO1_IO5		0x1c6
 		>;
 	};
+
+        pinctrl_rtc: rtcgrp {
+                fsl,pins = <
+                        MX8MM_IOMUXC_GPIO1_IO15_GPIO1_IO15              0xc1
+                >;
+        };
 };
