@@ -118,14 +118,14 @@
 	status = "okay";
 
 	/* CAN controller */
-	can0: can@1 {
-		compatible = "microchip,mcp251xfd";
-		reg = <1>;
+	can0: can@0 {
+		compatible = "microchip,mcp2518fd";
+		reg = <0>;
 		pinctrl-names = "default";
 		pinctrl-0 = <&pinctrl_can>;
 		clocks = <&can0_osc>;
 		interrupt-parent = <&gpio1>;
-		interrupts = <6 IRQ_TYPE_EDGE_FALLING>;
+		interrupts = <6 IRQ_TYPE_LEVEL_LOW>;
 		microchip,rx-int-gpios = <&gpio5 4 GPIO_ACTIVE_LOW>;
 		spi-max-frequency = <20000000>;
 		status = "okay";
