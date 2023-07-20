@@ -64,19 +64,6 @@
 		};
 	};
 
-	leds {
-		compatible = "gpio-leds";
-		pinctrl-names = "default";
-		pinctrl-0 = <&pinctrl_leds>;
-		status = "okay";
-
-		emmc {
-			label = "eMMC";
-			linux,default-trigger = "mmc2";
-			gpios = <&gpio4 18 GPIO_ACTIVE_HIGH>;
-		};
-	};
-
 	pcie0_refclk: pcie0-refclk {
 		compatible = "fixed-clock";
 		#clock-cells = <0>;
@@ -459,12 +446,6 @@
 	pinctrl_captouch: captouchgrp {
 		fsl,pins = <
 			MX8MM_IOMUXC_GPIO1_IO14_GPIO1_IO14		0x16
-		>;
-	};
-
-	pinctrl_leds: ledgrp {
-		fsl,pins = <
-			MX8MM_IOMUXC_SAI1_TXD6_GPIO4_IO18		0x1c6
 		>;
 	};
 
