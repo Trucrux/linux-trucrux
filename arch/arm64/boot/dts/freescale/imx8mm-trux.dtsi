@@ -102,6 +102,19 @@
 		>;
 	};
 
+       pinctrl_touch_irq: touch_irqgrp {
+                fsl,pins = <
+                       MX8MM_IOMUXC_GPIO1_IO14_GPIO1_IO14               0x41    /* Mipi-dsi-touch-interrupt */
+                >;
+        };
+
+        pinctrl_touch_rst: touch_rstgrp {
+                fsl,pins = <
+                       MX8MM_IOMUXC_GPIO1_IO03_GPIO1_IO3                0x16    /* Mipi-dsi-touch-reset */
+                >;
+        };
+
+
 	pinctrl_bt: btgrp {
 		fsl,pins = <
 			MX8MM_IOMUXC_SD1_DATA4_GPIO2_IO6		0xc1	/* BT_REG_ON       */
@@ -521,6 +534,19 @@
 	scl-gpios = <&gpio5 18 GPIO_ACTIVE_HIGH>;
 	sda-gpios = <&gpio5 19 GPIO_ACTIVE_HIGH>;
 	status = "okay";
+
+        gt911: touchscreen@14 {
+                compatible = "goodix,gt911";
+                reg = <0x14>;
+                reset-gpios = <&gpio1 3 GPIO_ACTIVE_HIGH>;
+                interrupt-parent = <&gpio1>;
+                interrupts = <14 IRQ_TYPE_LEVEL_HIGH>;
+                irq-gpios = <&gpio1 14 GPIO_ACTIVE_HIGH>;
+                touchscreen-size-x = <720>;
+                touchscreen-size-y = <1280>;
+                status = "okay";
+                wakeup-source;
+        };
 
 };
 
