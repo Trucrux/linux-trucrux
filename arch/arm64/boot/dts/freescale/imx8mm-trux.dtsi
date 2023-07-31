@@ -20,16 +20,6 @@
 		regulator-always-on;
 	};
 
-	reg_eth_phy: regulator-eth-phy {
-		compatible = "regulator-fixed";
-		pinctrl-names = "default";
-		pinctrl-0 = <&pinctrl_reg_eth_phy>;
-		regulator-name = "eth_phy_pwr";
-		regulator-min-microvolt = <3300000>;
-		regulator-max-microvolt = <3300000>;
-		gpio = <&gpio1 7 GPIO_ACTIVE_LOW>;
-	};
-
 	reserved-memory {
 		/* cma region is provided by kernel command line as cma=<size>M */
 		/delete-node/ linux,cma;
@@ -105,6 +95,25 @@
 
 &iomuxc {
 	pinctrl-names = "default";
+
+	pinctrl_mipi_dsi_rst: mipi-dsi-rst {
+		fsl,pins = <
+			MX8MM_IOMUXC_GPIO1_IO07_GPIO1_IO7               0x19    /* DSI_RST      */
+		>;
+	};
+
+       pinctrl_touch_irq: touch_irqgrp {
+                fsl,pins = <
+                       MX8MM_IOMUXC_GPIO1_IO14_GPIO1_IO14               0x41    /* Mipi-dsi-touch-interrupt */
+                >;
+        };
+
+        pinctrl_touch_rst: touch_rstgrp {
+                fsl,pins = <
+                       MX8MM_IOMUXC_GPIO1_IO03_GPIO1_IO3                0x16    /* Mipi-dsi-touch-reset */
+                >;
+        };
+
 
 	pinctrl_bt: btgrp {
 		fsl,pins = <
@@ -219,12 +228,6 @@
 	pinctrl_pwm1: pwm1grp {
 		fsl,pins = <
 			MX8MM_IOMUXC_GPIO1_IO01_PWM1_OUT		0x06
-		>;
-	};
-
-	pinctrl_reg_eth_phy: regethphy {
-		fsl,pins = <
-			MX8MM_IOMUXC_GPIO1_IO07_GPIO1_IO7		0x41
 		>;
 	};
 
@@ -372,45 +375,6 @@
 	scl-gpios = <&gpio5 14 GPIO_ACTIVE_HIGH>;
 	sda-gpios = <&gpio5 15 GPIO_ACTIVE_HIGH>;
 	status = "okay";
-
-	dsi_lvds_bridge: sn65dsi84@2c {
-		compatible = "ti,sn65dsi83";
-		reg = <0x2c>;
-		ti,dsi-lanes = <4>;
-		ti,lvds-format = <1>;
-		ti,lvds-bpp = <24>;
-		ti,lvds-channels = <1>;
-		ti,width-mm = <154>;
-		ti,height-mm = <87>;
-		enable-gpios = <&gpio2 11 GPIO_ACTIVE_HIGH>;
-		pinctrl-names = "default";
-		pinctrl-0 = <&pinctrl_lvds>;
-		status = "okay";
-
-		display-timings {
-			lvds {
-				clock-frequency = <33000000>;
-				hactive = <800>;
-				vactive = <480>;
-				hback-porch = <40>;
-				hfront-porch = <40>;
-				vback-porch = <29>;
-				vfront-porch = <13>;
-				hsync-len = <48>;
-				vsync-len = <3>;
-				hsync-active = <0>;
-				vsync-active = <0>;
-				de-active = <1>;
-				pixelclk-active = <0>;
-			};
-		};
-
-		port {
-			dsi_lvds_bridge_in: endpoint {
-				remote-endpoint = <&mipi_dsi_out>;
-			};
-		};
-	};
 
 	pmic@4b {
 		status = "okay";
@@ -571,10 +535,29 @@
 	sda-gpios = <&gpio5 19 GPIO_ACTIVE_HIGH>;
 	status = "okay";
 
+        gt911: touchscreen@14 {
+                compatible = "goodix,gt911";
+                reg = <0x14>;
+                reset-gpios = <&gpio1 3 GPIO_ACTIVE_HIGH>;
+                interrupt-parent = <&gpio1>;
+                interrupts = <14 IRQ_TYPE_LEVEL_HIGH>;
+                irq-gpios = <&gpio1 14 GPIO_ACTIVE_HIGH>;
+                touchscreen-size-x = <720>;
+                touchscreen-size-y = <1280>;
+                status = "okay";
+                wakeup-source;
+        };
+
 };
 
 &lcdif {
 	status = "okay";
+
+	port@0 {
+		lcdif_out: endpoint {
+			remote-endpoint = <&mipi_dsi_in>;
+		};
+	};
 };
 
 &micfil {
@@ -587,14 +570,43 @@
 };
 
 &mipi_dsi {
+	#address-cells = <1>;
+	#size-cells = <0>;
 	status = "okay";
 
-	port@1 {
-		mipi_dsi_out: endpoint {
-			remote-endpoint = <&dsi_lvds_bridge_in>;
-			attach-bridge;
+	panel@0 {
+		compatible = "bananapi,lhr050h41", "ilitek,ili9881c";
+		pinctrl-0 = <&pinctrl_mipi_dsi_rst>;
+		pinctrl-names = "default";
+		reset-gpio = <&gpio1 7 GPIO_ACTIVE_LOW>;
+		reg = <0>;
+		timing-mode = <1>;
+		video-mode = <3>;
+
+		port {
+			panel_in: endpoint {
+				remote-endpoint = <&mipi_dsi_out>;
+				};
 		};
 	};
+
+	ports {
+		#address-cells = <1>;
+		#size-cells = <0>;
+		port@0 {
+			reg = <0>;
+			mipi_dsi_in: endpoint {
+				remote-endpoint = <&lcdif_out>;
+				};
+			};
+		port@1 {
+			reg = <1>;
+			mipi_dsi_out: endpoint {
+				remote-endpoint = <&panel_in>;
+			};
+		};
+	};
+
 };
 
 &mu {
