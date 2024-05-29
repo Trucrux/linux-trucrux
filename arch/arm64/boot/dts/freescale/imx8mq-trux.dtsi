@@ -550,7 +550,7 @@
 		>;
 		status = "okay";
 	};
-};
+}; 
 
 &irqsteer {
 	status = "okay";
