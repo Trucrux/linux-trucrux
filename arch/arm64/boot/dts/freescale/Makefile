@@ -131,7 +131,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mq-evk-dual-display.dtb
 dtb-$(CONFIG_ARCH_MXC) += imx8mq-trux-8MDVP-sd-hdmi.dtb \
 			  imx8mq-trux-8MDVP-sd-mipi.dtb \
 			  imx8mq-trux-8MDVP-wifi-hdmi.dtb \
-			  imx8mq-trux-8MDVP-wifi-mipi.dtb
+			  imx8mq-trux-8MDVP-wifi-mipi.dtb \
 dtb-$(CONFIG_ARCH_MXC) += imx8mq-hummingboard-pulse.dtb
 dtb-$(CONFIG_ARCH_MXC) += imx8mq-kontron-pitx-imx8m.dtb
 dtb-$(CONFIG_ARCH_MXC) += imx8mq-mnt-reform2.dtb
