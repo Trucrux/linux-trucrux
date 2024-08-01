@@ -113,7 +113,6 @@ static const struct of_device_id whitelist_phys[] = {
 bool of_mdiobus_child_is_phy(struct device_node *child)
 {
 	u32 phy_id;
-	mdelay(30);
 
 	if (of_get_phy_id(child, &phy_id) != -EINVAL)
 		return true;
