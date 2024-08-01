@@ -420,6 +420,12 @@ static int rtl8211f_config_init(struct phy_device *phydev)
 		}
 	}
 
+	/* Add the PHY_LED configuration here */
+
+	phy_write(phydev, RTL821x_PAGE_SELECT, 0xd04);
+	phy_write(phydev, 0x10, 0x6c0b);
+        phy_write(phydev, RTL821x_PAGE_SELECT, 0x0);
+
 	return genphy_soft_reset(phydev);
 }
 
